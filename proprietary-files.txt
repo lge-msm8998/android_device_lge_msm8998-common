@@ -843,6 +843,9 @@ vendor/lib/vendor.qti.hardware.soter@1.0.so
 vendor/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.soter@1.0.so
 
+# SSR
+vendor/bin/ssr_setup
+
 # Trusted User Interface
 system_ext/lib/vendor.qti.hardware.tui_comm@1.0.so
 system_ext/lib64/vendor.qti.hardware.tui_comm@1.0.so
