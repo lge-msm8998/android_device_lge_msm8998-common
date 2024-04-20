@@ -25,8 +25,27 @@ vendor/lib64/vendor.qti.hardware.dsp@1.0.so
 -vendor/lib64/hw/com.dsi.ant@1.0-impl.so
 
 # Audio
+vendor/lib/libacdb-fts.so
+vendor/lib/libacdbloader.so
+vendor/lib/libacdbrtac.so
+vendor/lib/libadiertac.so
+vendor/lib/libadm.so
+vendor/lib/libaudcal.so
+vendor/lib/libaudio_log_utils.so
+vendor/lib/libaudioalsa.so
 -vendor/lib/libaudioparsers.so
+vendor/lib/libqtigef.so
+vendor/lib/soundfx/libasphere.so
+vendor/lib64/libacdb-fts.so
+vendor/lib64/libacdbloader.so
+vendor/lib64/libacdbrtac.so
+vendor/lib64/libadiertac.so
+vendor/lib64/libaudcal.so
+vendor/lib64/libaudio_log_utils.so
+vendor/lib64/libaudioalsa.so
 -vendor/lib64/libaudioparsers.so
+vendor/lib64/libqtigef.so
+vendor/lib64/soundfx/libasphere.so
 
 # Alarm
 -system_ext/framework/vendor.qti.hardware.alarm-V1.0-java.jar
