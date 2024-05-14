@@ -237,8 +237,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     init.baseband.proxy.rc \
-    init.phoenix_sprout_vendor.rc \
-    init.phoenix_sprout.rc \
     init.lge.fingerprints.rc \
     init.lge.power.rc \
     init.lge.usb.rc \
@@ -403,7 +401,7 @@ PRODUCT_PACKAGES += \
 
 # Recovery
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/recovery/root/init.recovery.joan.rc:root/init.recovery.joan.rc
+    $(COMMON_PATH)/recovery/root/init.recovery.qcom.rc:root/init.recovery.qcom.rc
 
 # RCS
 PRODUCT_PACKAGES += \

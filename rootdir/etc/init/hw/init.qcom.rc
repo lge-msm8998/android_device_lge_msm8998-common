@@ -25,11 +25,27 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+# This file will be installed as vendor/etc/init/hw/init.{ro.hardware}.rc
+# to override init.qcom.rc and init.target.rc
+import /vendor/etc/init/hw/init.lge.usb.rc
+import /vendor/etc/init/hw/init.lge.usb.configfs.rc
+import /vendor/etc/init/hw/init.lge.power.rc
+import /init.lge.svelte.rc
+import /init.lge.log.rc
+
+# Fingerprints bring-up
+import /vendor/etc/init/hw/init.lge.fingerprints.rc
+# Sar_controller
+import /vendor/etc/init/hw/init.lge.sar_controller.rc
+
 import /vendor/etc/init/hw/init.qti.ufs.rc
 import /vendor/etc/init/hw/init.qcom.usb.rc
 import /vendor/etc/init/hw/init.qcom.test.rc
 import /vendor/etc/init/hw/init.target.rc
 import /vendor/etc/init/hw/init.qcom.factory.rc
+
+on early-fs
+    ffu_update
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -66,6 +82,11 @@ on early-init
     rm /data/system/package_cache
 
 on init
+    mkdir /mnt/vendor/mpt 0775 system system
+    mkdir /mnt/vendor/persist-lg 0771 system system
+    mkdir /mnt/vendor/sns 0755 system system
+    mkdir /mnt/vendor/power 0755 root root
+    mkdir /mnt/vendor/persist 0771 root system
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
@@ -128,6 +149,23 @@ on early-boot
     chmod 0664 /mnt/vendor/persist/sensors/sensors_settings
 
 on boot
+
+# BSP_Display Start
+
+# Img Tune - M+
+    chown system system /sys/class/panel/img_tune/mplus_hd
+    chown system system /sys/class/panel/img_tune/mplus_max
+    chown system system /sys/class/panel/img_tune/mplus_mode
+
+# Img Tune - HDR
+    chown system system /sys/class/panel/img_tune/hdr_mode
+
+# aod area
+    chown system system /sys/class/panel/aod/area
+    write /sys/class/panel/aod/area "0 0 0 0 1470"
+
+# BSP_Display End
+
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/state
