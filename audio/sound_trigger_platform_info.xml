@@ -37,9 +37,9 @@
         <param transit_to_adsp_on_playback="true" />
         <!-- Below backend params must match with port used in mixer path file -->
         <!-- param used to configure backend sample rate, format and channels -->
-        <param backend_port_name="SLIM_1_TX" />
+        <param backend_port_name="SLIM_0_TX" />
         <!-- Param used to match and obtain device backend index -->
-        <param backend_dai_name="SLIMBUS_1_TX" />
+        <param backend_dai_name="SLIMBUS_0_TX" />
     </common_config>
     <acdb_ids>
         <param DEVICE_HANDSET_MIC_APE="100" />
@@ -58,10 +58,10 @@
         <param execution_type="WDSP" /> <!-- value: "WDSP" "ADSP" "DYNAMIC" -->
         <param app_type="2" /> <!-- app type used in ACDB -->
         <param library="libsmwrapper.so" />
-        <param max_cpe_phrases="2" />
-        <param max_cpe_users="2" />
-        <param max_ape_phrases="2" />
-        <param max_ape_users="2" />
+        <param max_cpe_phrases="1" />
+        <param max_cpe_users="1" />
+        <param max_ape_phrases="1" />
+        <param max_ape_users="1" />
         <!-- Profile specific data which the algorithm can support -->
         <param sample_rate="16000" />
         <param bit_width="16" />
