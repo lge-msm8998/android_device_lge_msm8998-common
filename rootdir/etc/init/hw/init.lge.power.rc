@@ -26,29 +26,87 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+# chargerlogo
+
+#on chargerlogo
+# if it needs, add to model device folder
+
+#on chargerlogo_exec
+# if it needs, add to model device folder
+
+# Start charger_monitor on chargerlogo
+# if it needs, add to model device folder
+
+#Power_BSP, thermal senario change about LCD brightness
+#on post-fs-data
+#   chown system system /sys/class/leds/lcd-backlight/thermald_status
+#   chmod 0644 /sys/class/leds/lcd-backlight/thermald_status
+
+# battery fake mode
+on property:persist.vendor.lge.service.fakebatt=1
+   write /sys/class/power_supply/battery/pseudo_batt "1 1 100 40 4100000 80 1"
+on property:persist.vendor.lge.service.fakebatt=0
+   write /sys/class/power_supply/battery/pseudo_batt "0 1 100 40 4100000 80 1"
+
+# llk mode
+on property:persist.vendor.lge.sys.store_demo_enabled=1
+   write /sys/class/power_supply/battery/store_demo_enabled 1
+on property:persist.vendor.lge.sys.store_demo_enabled=0
+   write /sys/class/power_supply/battery/store_demo_enabled 0
+
+# emotional led
+# if it needs, add to model device folder
+
 # pm debug mask enable(clock/resume irq)
 on boot
    write /sys/kernel/debug/clk/debug_suspend 1
    write /sys/module/msm_show_resume_irq/parameters/debug_mask 1
+
+# charger timer
+   chown system system /sys/class/power_supply/ac/charger_timer
+
+# charging_enable
+   chown system system /sys/class/power_supply/battery/charging_enabled
+
+# safety timer
+   chown system system /sys/class/power_supply/battery/safety_timer_enabled
+
+# charging mitigation for mitigation
+   chown system system /sys/class/power_supply/battery/constant_charge_current
+
 # printk log level
    write /proc/sys/kernel/printk "7 6 1 7"
 
+#service servicemanager /system/bin/servicemanager
+# if it needs, add to model device folder
+
+#service lghealthd /system/bin/lghealthd
+# if it needs, add to model device folder
+
+#usb current max mode property
+on property:persist.vendor.lge.service.usbcurrentmax=1
+	write /sys/class/power_supply/battery/usb_current_max_mode 1
+on property:persist.vendor.lge.service.usbcurrentmax=0
+	write /sys/class/power_supply/battery/usb_current_max_mode 0
+
+# Power_BSP, add hard reset property
+on property:persist.vendor.lge.hardreset=1
+	write /sys/module/msm_poweroff/parameters/hard_reset 1
+on property:persist.vendor.lge.hardreset=0
+	write /sys/module/msm_poweroff/parameters/hard_reset 0
+
 # LGE gbmd
-service vendor.gbmd /vendor/bin/gbmd
-   class main
-   socket gbm-client stream 660 system system
-   user system
-   group system
+# if it needs, add to model device folder
 
 # LGE prmd
-service vendor.prmd /vendor/bin/prmd
-   class main
-   socket prm-client stream 660 system system
-   user system
-   group system
+# if it needs, add to model device folder
 
-# LG Hiddenmenu smpl_count service
-service vendor.smpl_count /vendor/bin/smpl_count
-   class main
-   user root
-   oneshot
+# LGE triton
+# if it needs, add to model device folder
+
+#on property:sys.boot_completed=1
+# if it needs, add to model device folder
+
+#on boot
+# if it needs, add to model device folder
+

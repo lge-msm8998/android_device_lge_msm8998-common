@@ -28,3 +28,8 @@
 on property:init.svc.vendor.ssr_setup=stopped
 	write /sys/bus/msm_subsys/devices/subsys4/restart_level system
 
+on boot
+# Begin LG Volume vibrator
+    chown system system /sys/class/timed_output/vibrator/amp
+    chmod 664 /sys/class/timed_output/vibrator/amp
+# End LG Volume vibrator

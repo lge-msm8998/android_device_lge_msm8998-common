@@ -1,9 +1,18 @@
 on boot
-    chown system system /sys/devices/virtual/input/lge_fingerprint/clk_enable
-    chown system system /sys/devices/virtual/input/lge_fingerprint/device_prepare
-    chown system system /sys/devices/virtual/input/lge_fingerprint/wakeup_enable
-    chown system system /sys/devices/virtual/input/lge_fingerprint/irq
-    chmod 0200 /sys/devices/virtual/input/lge_fingerprint/clk_enable
-    chmod 0200 /sys/devices/virtual/input/lge_fingerprint/device_prepare
-    chmod 0200 /sys/devices/virtual/input/lge_fingerprint/wakeup_enable
-    chmod 0644 /sys/devices/virtual/input/lge_fingerprint/irq
+   chown system system /dev/goodix_fp
+   chmod 644 /dev/goodix_fp
+   chown system system /sys/devices/virtual/input/lge_fingerprint/clk_enable
+   chown system system /sys/devices/virtual/input/lge_fingerprint/device_prepare
+   chown system system /sys/devices/virtual/input/lge_fingerprint/wakeup_enable
+   chown system system /sys/devices/virtual/input/lge_fingerprint/irq
+   chmod 0200 /sys/devices/virtual/input/lge_fingerprint/clk_enable
+   chmod 0200 /sys/devices/virtual/input/lge_fingerprint/device_prepare
+   chmod 0200 /sys/devices/virtual/input/lge_fingerprint/wakeup_enable
+   chmod 0644 /sys/devices/virtual/input/lge_fingerprint/irq
+
+on post-fs-data
+   mkdir /mnt/vendor/persist-lg/goodix 755 system system
+
+on property:ro.vendor.lge.minios.bootstart=1
+    start vendor.fps_hal
+
