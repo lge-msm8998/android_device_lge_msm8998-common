@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-COMMON_PATH := device/lge/joan-common
+COMMON_PATH := device/lge/msm8998-common
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
@@ -506,4 +506,4 @@ PRODUCT_PACKAGES += \
     firmware_wlan_mac.bin_symlink
 
 # Inherit proprietary blobs
-$(call inherit-product, vendor/lge/joan-common/joan-common-vendor.mk)
+$(call inherit-product, vendor/lge/msm8998-common/msm8998-common-vendor.mk)

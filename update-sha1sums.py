@@ -10,12 +10,11 @@ import os
 import sys
 from hashlib import sha1
 
-device='joan-common'
+device='msm8998-common'
 vendor='lge'
 
 files = [
-    "proprietary-files.txt",
-    "proprietary-files_phoenix.txt"
+    "proprietary-files.txt"
 ]
 
 def cleanup(lines):
@@ -37,7 +36,7 @@ def update(lines):
 
         # Check if we need to set SHA1 hash for the next files
         if line[0] == '#':
-            needSHA1 = (' - from' in line or '# phoenix_sprout - ' in line)
+            needSHA1 = (' - from' in line)
             continue
 
         if needSHA1:

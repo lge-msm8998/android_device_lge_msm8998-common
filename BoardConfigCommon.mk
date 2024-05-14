@@ -4,10 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-COMMON_PATH := device/lge/joan-common
-
-# inherit from the proprietary version
-include vendor/lge/joan-common/BoardConfigVendor.mk
+COMMON_PATH := device/lge/msm8998-common
 
 # Platform
 TARGET_ARCH := arm64
@@ -132,7 +129,6 @@ TARGET_WLAN_POWER_STAT := "/sys/kernel/debug/wlan0/power_stats"
 # Recovery
 BOOTLOADER_MESSAGE_OFFSET := 128
 TARGET_RECOVERY_DENSITY := xxxhdpi
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.joan
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
@@ -168,3 +164,6 @@ WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wlan"
 WIFI_DRIVER_STATE_OFF := "OFF"
 WIFI_DRIVER_STATE_ON := "ON"
 PRODUCT_VENDOR_MOVE_ENABLED := true
+
+# inherit from the proprietary version
+include vendor/lge/msm8998-common/BoardConfigVendor.mk
