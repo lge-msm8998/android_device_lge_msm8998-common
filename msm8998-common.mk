@@ -248,7 +248,6 @@ PRODUCT_PACKAGES += \
     init.target.rc
 
 PRODUCT_PACKAGES += \
-    fstab.joan \
     ueventd.qcom.rc
 
 # IRSC
