@@ -190,10 +190,6 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/gps/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf \
     $(COMMON_PATH)/gps/xtwifi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/xtwifi.conf
 
-# HDR
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/hdr_tm_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/hdr_tm_config.xml
-
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.0-impl \
