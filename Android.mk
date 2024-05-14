@@ -6,7 +6,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter h932 joan phoenix_sprout,$(TARGET_DEVICE)),)
+ifneq ($(filter h932 phoenix_sprout,$(TARGET_DEVICE)),)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
