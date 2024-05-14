@@ -1,4 +1,4 @@
-# Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+# Copyright (c) 2012-2015, 2017-2019, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -29,9 +29,9 @@
 # Below macro will be read by uevent and path will
 # be added to search path for firmware loading
 firmware_directories /vendor/firmware_mnt/image/
-
 # the DIAG device node is not world writable/readable.
-/dev/diag                 0660   system     vendor_qti_diag
+/dev/diag                 0666   system     diag
+/dev/diag_lge             0660   system     qcom_diag
 
 /dev/genlock              0666   system     system
 /dev/wlan                 0660   wifi       wifi
@@ -54,7 +54,8 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/rmnet_ctrl           0660   usb        usb
 /dev/dpl_ctrl             0660   usb        usb
 /dev/ipa_odl_ctl          0660   radio      radio
-/dev/ipa_adpl             0660   system     vendor_adpl_odl
+/dev/ipa_adpl             0660   system     oem_2905
+/dev/synx_device          0660   root       camera
 
 #permissions for CSVT
 /dev/smd11                0660   radio      radio
@@ -72,7 +73,7 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/mobicore-user        0666   system     system
 
 /dev/radio0               0640   system     system
-/dev/rfcomm0              0660   bluetooth  bluetoot
+/dev/rfcomm0              0660   bluetooth  bluetooth
 /dev/ttyUSB0              0660   bluetooth  bluetooth
 /dev/smdcntl0             0640   radio      radio
 /dev/smdcntl1             0640   radio      radio
@@ -126,6 +127,7 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/at_usb0              0640   radio      radio
 /dev/at_mdm0              0660   radio      radio
 /dev/video*               0660   system     camera
+/dev/cvp*                 0660   system     camera
 /dev/media*               0660   system     camera
 /dev/v4l-subdev*          0660   system     camera
 /dev/qseecom              0660   system     drmrpc
@@ -141,6 +143,7 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/sec_nvm_*            0660   system     system
 /dev/cryptoapp            0660   system     system
 /dev/spdaemon_ssr         0660   system     system
+/dev/iuicc                0660   system     system
 /dev/gemini0              0660   system     camera
 /dev/jpeg0                0660   system     camera
 /dev/jpeg1                0660   system     camera
@@ -153,7 +156,17 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/tspdrv               0660   system     system
 
 #QDSS
-/dev/byte-cntr            0660   system     vendor_qdss
+/dev/byte-cntr            0660   system    oem_2902
+/dev/mhi_qdss             0660   system    oem_2902
+/sys/class/qdss_bridge/mhi_qdss  mode      0660     system   oem_2902
+
+#qg
+/dev/qg                   0660  system     system
+/dev/qg_battery           0660  system     system
+
+#qvr
+/dev/qvr_external_sensor_ioctl      0660  system  system
+/sys/kernel/qvr_external_sensor/fd  0660  system  system
 
 # wlan
 /dev/wcnss_wlan           0660   system     system
@@ -170,7 +183,7 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/msm_vidc_enc         0660   system     audio
 /dev/msm_rotator          0660   system     system
 /dev/hw_random            0600   root       root
-/dev/adsprpc-smd          0664   system     system
+/dev/sdsprpc-smd          0660   system     system
 
 #permissions for audio
 /dev/wcd_dsp0_control     0660   system     audio
@@ -194,7 +207,6 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/msm_amrwb_in         0660   system     audio
 /dev/msm_a2dp_in          0660   system     audio
 /dev/msm_ac3              0660   system     audio
-/dev/msm_acdb             0660   system     audio
 /dev/msm_audio_cal        0660   system     audio
 /dev/msm_hweffects        0660   system     audio
 /dev/msm_cad              0660   system     audio
@@ -213,19 +225,12 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/ttyGS0               0660   system     system
 /dev/i2c-5                0660   media       media
 /dev/avtimer              0660   system     audio
+/dev/spidev2.0            0660   system     audio
 
 # DVB devices
 /dev/dvb/adapter0/demux*  0440   media       media
 /dev/dvb/adapter0/dvr*    0660   media       media
 /dev/dvb/adapter0/video*  0660   media       media
-
-# TDMB
-/dev/broadcast0           0660   media      media
-
-# JAPAN ISDBT
-/dev/dvb0.demux*          0660   media       media
-/dev/dvb0.dvr*            0660   media       media
-/dev/broadcast_*          0660   system     system
 
 # Broadcast devices
 /dev/tsc_mux0             0660   media       media
@@ -291,11 +296,8 @@ firmware_directories /vendor/firmware_mnt/image/
 /sys/devices/virtual/net/bond0 queues/rx-0/rps_cpus 0660 system system
 
 #nfc permissions
-/dev/pn547                0660    nfc         nfc
-/dev/cxd224x-i2c          0660    nfc         nfc
-#/dev/nfc-nci              0660    nfc         nfc
-#/dev/nq-nci               0660    nfc         nfc
-#/dev/assd                 0660    nfc         nfc
+/dev/pn547                0660   nfc        nfc
+/dev/cxd22xx-i2c          0660   nfc        nfc
 
 # UIO devices
 /dev/uio0                 0660   system     system
@@ -303,7 +305,7 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/uio2                 0660   system     system
 
 # SSR devices
-/dev/subsys_*             0640   system     system
+/dev/subsys_*         0640   system     system
 
 # Ultrasound device
 /dev/usf1                 0660   system     system
@@ -312,7 +314,9 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/ramdump*             0640   system     system
 
 # Fingerprint device
-/dev/qbt1000              0660   system     system
+/dev/qbt*                 0660   system     system
+/sys/class/fts/touch_aoi aoi_set 0660 root system
+/sys/class/fts/touch_aoi power_set 0660 root system
 
 #ImproveTouch device
 /dev/hbtp_input           0660   system     system
@@ -326,6 +330,8 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/block/platform/soc/c0c4000.sdhci/by-name/frp       0600   system     system
 /dev/block/platform/soc/1d84000.ufshc/by-name/frp       0600   system     system
 /dev/block/platform/soc/7c4000.sdhci/by-name/frp        0600   system     system
+/dev/block/platform/soc/4744000.sdhci/by-name/frp       0600   system     system
+/dev/block/platform/soc/4804000.ufshc/by-name/frp       0600   system     system
 
 # This is temporary while using SD card for initial bring-up
 /dev/block/platform/soc/8804000.sdhci/by-name/frp       0600   system     system
@@ -347,8 +353,45 @@ firmware_directories /vendor/firmware_mnt/image/
 # NPU device
 /dev/msm_npu             0644   system     system
 
-# sys-fs usb
-/sys/class/android_usb/android0    lock    0664    system    system
+# USB role switch
+/sys/class/dual_role_usb/*	data_role	0660	system	system
+/sys/class/dual_role_usb/*	power_role	0660	system	system
+/sys/class/dual_role_usb/*	mode		0660	system	system
+
+#Memory Offline
+/sys/devices/system/memory/memory* state    0660 system system
+
+/sys/devices/virtual/hdcp/msm_hdcp  min_level_change 0664    system  graphics
+
+# sys-fs display
+/sys/class/graphics/fb*     hpd                      0664    system  graphics
+/sys/class/graphics/fb*     res_info                 0664    system  graphics
+/sys/class/graphics/fb*     vendor_name              0664    system  graphics
+/sys/class/graphics/fb*     product_description      0664    system  graphics
+/sys/class/graphics/fb*     video_mode               0664    system  graphics
+/sys/class/graphics/fb*     format_3d                0664    system  graphics
+/sys/class/graphics/fb*     s3d_mode                 0664    system  graphics
+/sys/class/graphics/fb*     dynamic_fps              0664    system  graphics
+/sys/class/graphics/fb*     msm_fb_dfps_mode         0664    system  graphics
+/sys/class/graphics/fb*     hdr_stream               0664    system  graphics
+/sys/class/graphics/fb*     cec/enable               0664    system  graphics
+/sys/class/graphics/fb*     cec/logical_addr         0664    system  graphics
+/sys/class/graphics/fb*     cec/rd_msg               0664    system  graphics
+/sys/class/graphics/fb*     pa                       0664    system  graphics
+/sys/class/graphics/fb*     cec/wr_msg               0600    system  graphics
+/sys/class/graphics/fb*     hdcp/tp                  0664    system  graphics
+/sys/class/graphics/fb*     hdcp2p2/min_level_change 0660    system  graphics
+/sys/class/graphics/fb*     hdmi_audio_cb            0600    audioserver audio
+
+/sys/class/graphics/fb*     lineptr_value            0664    system  graphics
+/sys/class/graphics/fb*     msm_fb_persist_mode      0664    system  graphics
+
+/sys/class/graphics/fb0     idle_time                0664    system  graphics
+/sys/class/graphics/fb0     dynamic_fps              0664    system  graphics
+/sys/class/graphics/fb0     dyn_pu                   0664    system  graphics
+/sys/class/graphics/fb0     modes                    0664    system  graphics
+/sys/class/graphics/fb0     mode                     0664    system  graphics
+/sys/class/graphics/fb0     msm_cmd_autorefresh_en   0664    system  graphics
 
 # Charger
 /sys/class/power_supply/battery  battery_charging_enabled   0660    system  system

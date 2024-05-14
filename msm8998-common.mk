@@ -242,7 +242,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     fstab.joan \
-    ueventd.joan.rc
+    ueventd.qcom.rc
 
 # IRSC
 PRODUCT_COPY_FILES += \
