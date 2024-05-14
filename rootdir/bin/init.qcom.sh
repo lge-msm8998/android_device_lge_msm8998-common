@@ -1,4 +1,4 @@
-#!/vendor/bin/sh
+#! /vendor/bin/sh
 
 # Copyright (c) 2009-2016, The Linux Foundation. All rights reserved.
 #
@@ -84,7 +84,7 @@ start_msm_irqbalance_8939()
 {
 	if [ -f /vendor/bin/msm_irqbalance ]; then
 		case "$platformid" in
-		    "239" | "293" | "294" | "295" | "304" | "313" |"353")
+		    "239" | "293" | "294" | "295" | "304" | "338" | "313" | "353" | "354")
 			start vendor.msm_irqbalance;;
 		    "349" | "350" )
 			start vendor.msm_irqbal_lb;;
@@ -92,15 +92,50 @@ start_msm_irqbalance_8939()
 	fi
 }
 
-start_msm_irqbalance()
+start_msm_irqbalance_msmnile()
+{
+         if [ -f /vendor/bin/msm_irqbalance ]; then
+                start vendor.msm_irqbalance
+         fi
+}
+
+start_msm_irqbalance_kona()
+{
+         if [ -f /vendor/bin/msm_irqbalance ]; then
+                start vendor.msm_irqbalance
+         fi
+}
+
+start_msm_irqbalance_lito()
+{
+         if [ -f /vendor/bin/msm_irqbalance ]; then
+                start vendor.msm_irqbalance
+         fi
+}
+
+start_msm_irqbalance_atoll()
+{
+         if [ -f /vendor/bin/msm_irqbalance ]; then
+                start vendor.msm_irqbalance
+         fi
+}
+
+start_msm_irqbalance660()
 {
 	if [ -f /vendor/bin/msm_irqbalance ]; then
 		case "$platformid" in
-		    "317" | "324" | "325" | "326" | "345" | "346")
+		    "317" | "321" | "324" | "325" | "326" | "336" | "345" | "346" | "360" | "393")
 			start vendor.msm_irqbalance;;
 		    "318" | "327" | "385")
 			start vendor.msm_irqbl_sdm630;;
 		esac
+	fi
+}
+
+start_msm_irqbalance()
+{
+	if [ -f /vendor/bin/msm_irqbalance ]; then
+			start vendor.msm_irqbalance
 	fi
 }
 
@@ -200,7 +235,7 @@ case "$target" in
                   esac
                   ;;
        esac
-        start_msm_irqbalance
+        start_msm_irqbalance660
         ;;
     "apq8084")
         platformvalue=`cat /sys/devices/soc0/hw_platform`
@@ -253,7 +288,7 @@ case "$target" in
                   ;;
         esac
         ;;
-    "msm8994" | "msm8992" | "msm8998" | "apq8098_latv" | "sdm845" | "sdm710" | "qcs605" | "msmnile" | "talos")
+    "msm8994" | "msm8992" | "msm8998" | "apq8098_latv" | "sdm845" | "sdm710" | "qcs605" | "sm6150" | "trinket" | "bengal")
         start_msm_irqbalance
         ;;
     "msm8996")
@@ -279,6 +314,18 @@ case "$target" in
         ;;
     "msm8909")
         start_vm_bms
+        ;;
+    "msmnile")
+        start_msm_irqbalance_msmnile
+        ;;
+    "kona")
+        start_msm_irqbalance_kona
+        ;;
+    "lito")
+        start_msm_irqbalance_lito
+        ;;
+    "atoll")
+        start_msm_irqbalance_atoll
         ;;
     "msm8937")
         start_msm_irqbalance_8939
@@ -359,7 +406,7 @@ case "$target" in
              hw_platform=`cat /sys/devices/system/soc/soc0/hw_platform`
         fi
         case "$soc_id" in
-             "336" | "337" | "347" | "360" )
+             "336" | "337" | "347" | "360" | "393" )
                   case "$hw_platform" in
                        "Surf")
                                     setprop qemu.hw.mainkeys 0
@@ -389,13 +436,7 @@ else
 fi
 
 cur_version_info=`cat /vendor/firmware_mnt/verinfo/ver_info.txt`
-# LGE_ModemBSP, [MCFG_Buffet]
-product_name=`getprop ro.product.vendor.name`
-build_product=`getprop ro.build.product`
-sku_carrier=`getprop ro.boot.vendor.lge.sku_carrier`
-target_country=`getprop ro.vendor.lge.build.target_country`
-
-if [ "$product_name" = "joan_lao_com" ] || [ "$product_name" = "phoenix_lao_com" ]; then
+if [ ! -f /vendor/firmware_mnt/verinfo/ver_info.txt -o "$prev_version_info" != "$cur_version_info" ]; then
     # add W for group recursively before delete
     chmod g+w -R /data/vendor/modem_config/*
     rm -rf /data/vendor/modem_config/*
@@ -404,59 +445,10 @@ if [ "$product_name" = "joan_lao_com" ] || [ "$product_name" = "phoenix_lao_com"
     cp --preserve=m -d /vendor/firmware_mnt/verinfo/ver_info.txt /data/vendor/modem_config/
     cp --preserve=m -d /vendor/firmware_mnt/image/modem_pr/mbn_ota.txt /data/vendor/modem_config/
     # the group must be root, otherwise this script could not add "W" for group recursively
-    chown -hR system.system /data/vendor/modem_config
-    chmod g+w -R /data/vendor/modem_config/*
-
-
-    if [ "$product_name" = "phoenix_lao_com" ]; then
-        if [ "$sku_carrier" = "NA_ALL" ]; then
-	        if [ "$target_country" == "US" ]; then
-                    cp --preserve=m -d /data/vendor/modem_config/mcfg_sw/dig_lge/phoe_nao.dig /data/vendor/modem_config/mcfg_sw/mbn_sw.dig
-                    cp --preserve=m -d /data/vendor/modem_config/mcfg_sw/dig_lge/phoe_nao.txt /data/vendor/modem_config/mcfg_sw/mbn_sw.txt
-	        elif [ "$target_country" == "CA" ]; then
-                    cp --preserve=m -d /data/vendor/modem_config/mcfg_sw/dig_lge/phoe_can.dig /data/vendor/modem_config/mcfg_sw/mbn_sw.dig
-                    cp --preserve=m -d /data/vendor/modem_config/mcfg_sw/dig_lge/phoe_can.txt /data/vendor/modem_config/mcfg_sw/mbn_sw.txt
-	        fi
-        elif [ "$sku_carrier" == "GLOBAL" ]; then
-            cp --preserve=m -d /data/vendor/modem_config/mcfg_sw/dig_lge/phoe_glo.dig /data/vendor/modem_config/mcfg_sw/mbn_sw.dig
-            cp --preserve=m -d /data/vendor/modem_config/mcfg_sw/dig_lge/phoe_glo.txt /data/vendor/modem_config/mcfg_sw/mbn_sw.txt
-        fi
-    fi
-elif [ "$build_product" = "joan" ]; then
-    chmod g+w -R /data/vendor/modem_config/*
-    rm -rf /data/vendor/modem_config/*
-    # preserve the read only mode for all subdir and files
-    cp --preserve=m -dr /vendor/firmware_mnt/image/modem_pr/mcfg/configs/* /data/vendor/modem_config
-    cp --preserve=m -d /vendor/firmware_mnt/verinfo/ver_info.txt /data/vendor/modem_config/
-    cp --preserve=m -d /vendor/firmware_mnt/image/modem_pr/mbn_ota.txt /data/vendor/modem_config/
-    # the group must be root, otherwise this script could not add "W" for group recursively
-    chown -hR system.system /data/vendor/modem_config
-    chmod g+w -R /data/vendor/modem_config/*
-
-    if [ "$product_name" = "joan_nao_us" ] && [ "$lge_hydra" == "Renewal128" ]; then
-        cp --preserve=m -d /data/vendor/modem_config/mcfg_sw/dig_lge/open_spr.dig /data/vendor/modem_config/mcfg_sw/mbn_sw.dig
-        cp --preserve=m -d /data/vendor/modem_config/mcfg_sw/dig_lge/open_spr.txt /data/vendor/modem_config/mcfg_sw/mbn_sw.txt
-    elif [ "$product_name" = "joan_nao_us" ]; then
-        cp --preserve=m -d /data/vendor/modem_config/mcfg_sw/dig_lge/open_no.dig /data/vendor/modem_config/mcfg_sw/mbn_sw.dig
-        cp --preserve=m -d /data/vendor/modem_config/mcfg_sw/dig_lge/open_no.txt /data/vendor/modem_config/mcfg_sw/mbn_sw.txt
-    fi
-else
-    if [ ! -f /vendor/firmware_mnt/verinfo/ver_info.txt -o "$prev_version_info" != "$cur_version_info" ]; then
-        # add W for group recursively before delete
-        chmod g+w -R /data/vendor/modem_config/*
-        rm -rf /data/vendor/modem_config/*
-        # preserve the read only mode for all subdir and files
-        cp --preserve=m -dr /vendor/firmware_mnt/image/modem_pr/mcfg/configs/* /data/vendor/modem_config
-        cp --preserve=m -d /vendor/firmware_mnt/verinfo/ver_info.txt /data/vendor/modem_config/
-        cp --preserve=m -d /vendor/firmware_mnt/image/modem_pr/mbn_ota.txt /data/vendor/modem_config/
-        # the group must be root, otherwise this script could not add "W" for group recursively
-        chown -hR radio.root /data/vendor/modem_config/*
-    fi
+    chown -hR radio.root /data/vendor/modem_config/*
 fi
-chmod g-w -R /data/vendor/modem_config/*
 chmod g-w /data/vendor/modem_config
-#setprop ro.vendor.ril.mbn_copy_completed 1
-echo 1 > /data/vendor/radio/copy_complete
+setprop ro.vendor.ril.mbn_copy_completed 1
 
 #check build variant for printk logging
 #current default minimum boot-time-default
@@ -464,7 +456,7 @@ buildvariant=`getprop ro.build.type`
 case "$buildvariant" in
     "userdebug" | "eng")
         #set default loglevel to KERN_INFO
-        echo "6 6 1 7" > /proc/sys/kernel/printk
+        echo "4 6 1 7" > /proc/sys/kernel/printk
         ;;
     *)
         #set default loglevel to KERN_WARNING

@@ -221,23 +221,29 @@ PRODUCT_PACKAGES += \
 
 # Init
 PRODUCT_PACKAGES += \
-    init.baseband.sh \
     init.class_main.sh \
-    init.joan.hdmi.sh \
+    init.lge.usb.sh \
+    init.qcom.class_core.sh \
+    init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
     init.qcom.sensors.sh \
     init.qcom.sh \
-    init.qti.fm.sh
+    init.qti.qseecomd.sh
+
+PRODUCT_PACKAGES += \
+    init.lge.audio.rc \
+    init.qti.fm.rc \
+    vendor.lge.power.rc
 
 PRODUCT_PACKAGES += \
     init.baseband.proxy.rc \
-    init.joan.rc \
+    init.phoenix_sprout_vendor.rc \
+    init.phoenix_sprout.rc \
     init.lge.fingerprints.rc \
-    init.msm8998.rc \
+    init.lge.power.rc \
+    init.lge.usb.rc \
+    init.lge.usb.configfs.rc \
     init.qcom.rc \
-    init.qcom.power.rc \
-    init.qcom.usb.rc \
-    init.qti.fm.rc \
     init.target.rc
 
 PRODUCT_PACKAGES += \
