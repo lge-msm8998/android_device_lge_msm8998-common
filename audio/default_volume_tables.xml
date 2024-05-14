@@ -74,25 +74,6 @@
         <point>60,-4000</point>
         <point>100,0</point>
     </reference>
-    <reference name="DEFAULT_CAMERA_VOLUME_CURVE">
-    <!-- Default is Camera Volume Curve -->
-        <point>1,-1165</point>
-        <point>100,-1165</point>
-    </reference>
-    <reference name="DEFAULT_VOIP_VOLUME_CURVE">
-    <!-- Default is Voip Volume Curve -->
-        <point>0,-2100</point>
-        <point>33,-1400</point>
-        <point>66,-700</point>
-        <point>100,0</point>
-    </reference>
-    <reference name="ACCESSIBILITY_VOLUME_CURVE">
-    <!-- Default is Accessibility Volume Curve -->
-        <point>1,-4800</point>
-        <point>20,-3500</point>
-        <point>60,-2200</point>
-        <point>100,-1300</point>
-    </reference>
     <!-- **************************************************************** -->
     <!-- Non-mutable default volume curves:                               -->
     <!--     * first point is always for index 0                          -->
