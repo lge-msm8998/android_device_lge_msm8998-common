@@ -100,12 +100,6 @@ PRODUCT_PACKAGES += \
 
 
 # Camera
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/camera/camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camera_config.xml \
-    $(COMMON_PATH)/configs/camera/hi553_chromatix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/hi553_chromatix.xml \
-    $(COMMON_PATH)/configs/camera/imx351_chromatix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/imx351_chromatix.xml \
-    $(COMMON_PATH)/configs/camera/s5k3m3_chromatix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/s5k3m3_chromatix.xml
-
 PRODUCT_PACKAGES += \
     android.frameworks.displayservice@1.0 \
 	android.frameworks.displayservice@1.0.vendor \
