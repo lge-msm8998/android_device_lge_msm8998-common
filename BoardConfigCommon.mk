@@ -90,18 +90,20 @@ TARGET_INIT_VENDOR_LIB := libinit_lge_msm8998
 TARGET_RECOVERY_DEVICE_MODULES := libinit_lge_msm8998
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37
-BOARD_KERNEL_CMDLINE += ehci-hcd.park=3 lpm_levels.sleep_disabled=1
-BOARD_KERNEL_CMDLINE += sched_enable_hmp=1 sched_enable_power_aware=1
-BOARD_KERNEL_CMDLINE += service_locator.enable=1 swiotlb=2048 androidboot.configfs=true
-BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a800000.dwc3
-BOARD_KERNEL_CMDLINE += loop.max_part=7 androidboot.fstab_suffix=qcom
+BOARD_KERNEL_CMDLINE := user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 
+BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 sched_enable_hmp=1
+BOARD_KERNEL_CMDLINE += sched_enable_power_aware=1 service_locator.enable=1 swiotlb=2048
+BOARD_KERNEL_CMDLINE += androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3
+BOARD_KERNEL_CMDLINE += loop.max_part=7 androidboot.hardware=qcom
+BOARD_KERNEL_CMDLINE += androidboot.fstab_suffix=qcom
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1da4000.ufshc
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_SOURCE := kernel/lge/msm8998
 TARGET_KERNEL_VERSION := 4.4
+TARGET_KERNEL_CLANG_VERSION := r416183b
+TARGET_KERNEL_CLANG_PATH := $(abspath .)/prebuilts/clang/kernel/$(HOST_PREBUILT_TAG)/clang-$(TARGET_KERNEL_CLANG_VERSION)
 TARGET_KERNEL_LLVM_BINUTILS := false
 
 # Lights
