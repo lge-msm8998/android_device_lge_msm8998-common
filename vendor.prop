@@ -251,6 +251,9 @@ ro.soc.model=MSM8998
 # Storage
 persist.sys.binary_xml=false
 
+# Subsystem restart
+persist.vendor.ssr.restart_level=ALL_ENABLE
+
 # Time daemon
 persist.delta_time.enable=true
 
