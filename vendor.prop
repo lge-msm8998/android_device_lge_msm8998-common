@@ -254,6 +254,9 @@ ro.surface_flinger.vsync_event_phase_offset_ns=2000000
 ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
 ro.surface_flinger.wcg_composition_dataspace=143261696
 
+# Subsystem restart
+persist.vendor.ssr.restart_level=ALL_ENABLE
+
 # Time daemon
 persist.delta_time.enable=true
 
