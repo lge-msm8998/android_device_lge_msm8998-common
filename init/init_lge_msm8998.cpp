@@ -79,11 +79,20 @@ void init_target_properties()
     for (const auto& entry : android::base::Split(android::base::Trim(cmdline), " ")) {
         std::vector<std::string> pieces = android::base::Split(entry, "=");
         if (pieces.size() == 2) {
+            // joan
             if(pieces[0].compare("androidboot.vendor.lge.model.name") == 0)
             {
                 model = pieces[1];
                 unknownDevice = false;
-            } else if(pieces[0].compare("lge.dsds") == 0 && pieces[1].compare("dsds") == 0)
+            }
+            // phoenix_sprout
+            else if(pieces[0].compare("model.name") == 0)
+            {
+                model = pieces[1];
+                unknownDevice = false;
+            }
+            // is it dual SIM?
+            else if(pieces[0].compare("lge.dsds") == 0 && pieces[1].compare("dsds") == 0)
             {
                 dualSim = true;
             }
