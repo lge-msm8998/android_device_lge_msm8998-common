@@ -93,7 +93,7 @@ BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 sched_enable_hmp=1
 BOARD_KERNEL_CMDLINE += sched_enable_power_aware=1 service_locator.enable=1 swiotlb=2048
 BOARD_KERNEL_CMDLINE += androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3
 BOARD_KERNEL_CMDLINE += loop.max_part=7 androidboot.hardware=qcom
-BOARD_KERNEL_CMDLINE += androidboot.fstab_suffix=qcom
+BOARD_KERNEL_CMDLINE += androidboot.fstab_suffix=qcom loglevel=8
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1da4000.ufshc
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
@@ -153,10 +153,6 @@ BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wlan"
-WIFI_DRIVER_STATE_OFF := "OFF"
-WIFI_DRIVER_STATE_ON := "ON"
-PRODUCT_VENDOR_MOVE_ENABLED := true
 
 # inherit from the proprietary version
 include vendor/lge/msm8998-common/BoardConfigVendor.mk
