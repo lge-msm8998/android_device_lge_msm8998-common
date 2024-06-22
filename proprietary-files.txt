@@ -550,10 +550,6 @@ vendor/lib64/libgcs-ipc.so
 vendor/lib64/libgcs-osal.so
 vendor/lib64/libgcs.so
 
-# NFC
-vendor/firmware/libpn548ad_fw.so:vendor/lib/libpn548ad_fw.so
-vendor/firmware/libpn548ad_fw_64.so:vendor/lib64/libpn548ad_fw_64.so
-
 # Postprocessing
 vendor/etc/qdcm_calib_data_SW43402_cmd_mode_dsc_dsi_panel.xml
 
