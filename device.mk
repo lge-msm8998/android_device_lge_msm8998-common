@@ -6,6 +6,9 @@
 
 DEVICE_PATH := device/lge/joan
 
+# Add common definitions for Qualcomm
+$(call inherit-product, hardware/qcom-caf/common/common.mk)
+
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH) \
     hardware/lge
