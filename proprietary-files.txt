@@ -566,6 +566,8 @@ vendor/etc/init/dataqti.rc
 vendor/etc/init/ipacm-diag.rc
 vendor/etc/init/netmgrd.rc
 vendor/etc/init/qcrild.rc
+vendor/etc/init/vendor.qti.rmt_storage.rc
+vendor/etc/init/vendor.qti.tftp.rc
 vendor/lib/LGDataFeature_vendor.so
 vendor/lib/libconfigdb.so
 vendor/lib/libdsi_netctrl.so
