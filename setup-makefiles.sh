@@ -25,7 +25,7 @@ source "${HELPER}"
 setup_vendor "${DEVICE_COMMON}" "${VENDOR_COMMON:-$VENDOR}" "${ANDROID_ROOT}" true
 
 # Warning headers and guards
-write_headers "joan l01k phoenix_sprout"
+write_headers "joan l01k phoenix_sprout q910"
 
 # The standard common blobs
 write_makefiles "${MY_DIR}/proprietary-files.txt" true
