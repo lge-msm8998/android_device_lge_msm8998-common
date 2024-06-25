@@ -536,8 +536,6 @@ vendor/bin/hvdcp_opti
 vendor/bin/qni
 
 # Radio
-etc/permissions/privapp-permissions-qti.xml
-etc/sysconfig/qti_whitelist.xml
 product/etc/permissions/telephony_product_privapp-permissions-qti.xml
 -system_ext/app/QtiTelephonyService/QtiTelephonyService.apk
 system_ext/etc/permissions/qcrilhook.xml
