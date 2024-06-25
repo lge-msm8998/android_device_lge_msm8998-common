@@ -498,8 +498,6 @@ vendor/firmware/a530v2_seq.fw2
 vendor/firmware/a530v3_gpmu.fw2
 vendor/firmware/a530v3_seq.fw2
 vendor/firmware/a540_gpmu.fw2
-vendor/firmware/a540_zap.b00
-vendor/firmware/a540_zap.b02
 
 # Graphics (HDCP) - from cheeseburger - OnePlus5-user 10 QKQ1.191014.012 2010292059 release-keys
 vendor/lib/libhdcp1prov.so|4c0fd4d41fe11d36fa80f5127b2202b2a503fd0a
