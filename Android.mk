@@ -42,36 +42,6 @@ $(CPPF_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 ALL_DEFAULT_INSTALLED_MODULES += $(CPPF_SYMLINKS)
 # END CPPF Images
 
-# DXHDCP2 Images
-DXHDCP2_IMAGES := \
-    dxhdcp2.b00 dxhdcp2.b01 dxhdcp2.b02 dxhdcp2.b03 dxhdcp2.b04 \
-    dxhdcp2.b05 dxhdcp2.b06 dxhdcp2.b07 dxhdcp2.mdt
-
-DXHDCP2_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(DXHDCP2_IMAGES)))
-$(DXHDCP2_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "DXHDCP2 firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /vendor/firmware_mnt/image/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(DXHDCP2_SYMLINKS)
-# END DXHDCP2 Images
-
-# IPA FWS Images
-IPA_FWS_IMAGES := \
-    ipa_fws.b00 ipa_fws.b01 ipa_fws.b02 ipa_fws.b03 ipa_fws.b04 \
-    ipa_fws.mdt
-
-IPA_FWS_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(IPA_FWS_IMAGES)))
-$(IPA_FWS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "IPA FWS firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /firmware/image/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(IPA_FWS_SYMLINKS)
-# END IPA FWS Images
-
 # WIDEVINE Images
 WIDEVINE_IMAGES := \
     widevine.b00 widevine.b01 widevine.b02 widevine.b03 widevine.b04 \
