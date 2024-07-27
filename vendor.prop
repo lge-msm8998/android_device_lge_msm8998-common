@@ -129,27 +129,25 @@ ro.vendor.qti.core_ctl_min_cpu=2
 ro.vendor.qti.core_ctl_max_cpu=4
 
 # Display
+debug.renderengine.backend=skiaglthreaded
 debug.sf.auto_latch_unsignaled=true
 debug.sf.layer_caching_active_layer_timeout_ms=1000
 persist.debug.wfd.enable=0
 persist.hwc.enable_vds=1
 persist.sys.wfd.virtual=0
+ro.hardware.egl=adreno
+ro.hardware.vulkan=adreno
 ro.opengles.version=196610
-ro.vendor.display.cabl=2
-sdm.debug.disable_partial_split=1
-sdm.perf_hint_window=50
-#vendor.display.disable_skip_validate=1
-vendor.display.enable_default_color_mode=1
-vendor.display.perf_hint_window=50
-vendor.display.use_layer_ext=1
-debug.renderengine.backend=skiaglthreaded
 ro.surface_flinger.enable_layer_caching=true
 ro.surface_flinger.primary_display_orientation=ORIENTATION_0
 ro.surface_flinger.uclamp.min=130
+ro.vendor.display.cabl=2
+sdm.debug.disable_partial_split=1
+sdm.perf_hint_window=50
 vendor.display.disable_scaler=1
-
-ro.hardware.vulkan=adreno
-ro.hardware.egl=adreno
+vendor.display.enable_default_color_mode=1
+vendor.display.perf_hint_window=50
+vendor.display.use_layer_ext=1
 
 # Disable Skia tracing by default
 debug.hwui.skia_atrace_enabled=false
