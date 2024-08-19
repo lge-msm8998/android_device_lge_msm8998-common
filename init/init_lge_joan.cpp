@@ -41,12 +41,8 @@ void init_target_properties()
     std::string model;
     variant_info_t variant;
 
-    if(parse_cmdline("lge.dsds") == "dsds")
-    {
-        property_override("persist.radio.multisim.config", "dsds");
-    }
-
-    model = GetProperty("ro.boot.vendor.lge.model.name", "UNKNOWN");
+    // joan
+    model = GetProperty(PROPERTY_LGE_MODEL, "UNKNOWN");
     if(model == "LGV35")
         variant = joan_kddi_jp_info;
     else if (model == "L-01K")
@@ -60,5 +56,6 @@ void init_target_properties()
 
 void vendor_load_properties() {
     LOG(INFO) << "Loading vendor specific properties";
+    init_dsds_properties();
     init_target_properties();
 }

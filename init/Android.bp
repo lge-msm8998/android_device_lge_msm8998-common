@@ -14,19 +14,40 @@
 // limitations under the License.
 //
 
-cc_library_static {
-    name: "libinit_lge_msm8998",
-    recovery_available: true,
+filegroup {
+    name: "libinit_lge_msm8998_core_functions",
     srcs: [
-        "init_lge_msm8998.cpp",
         "libinit_utils.cpp",
         "libinit_variant.cpp"
     ],
+}
+
+cc_defaults {
+    name: "libinit_lge_msm8998",
+    recovery_available: true,
     include_dirs: [
         "system/libbase/include",
         "system/core/init"
     ],
     shared_libs: [
         "libbase",
+    ]
+}
+
+cc_library_static {
+    name: "libinit_lge_joan",
+    defaults: "libinit_lge_msm8998",
+    srcs: [
+        ":libinit_lge_msm8998_core_functions",
+        "init_lge_joan.cpp"
+    ]
+}
+
+cc_library_static {
+    name: "libinit_lge_phoenix",
+    defaults: "libinit_lge_msm8998",
+    srcs: [
+        ":libinit_lge_msm8998_core_functions",
+        "init_lge_phoenix.cpp"
     ]
 }

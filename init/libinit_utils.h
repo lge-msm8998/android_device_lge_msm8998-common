@@ -15,3 +15,5 @@ void set_ro_build_prop(const std::string &prop, const std::string &value, bool p
 std::string fingerprint_to_description(std::string fingerprint);
 
 std::string parse_cmdline(std::string findstring);
+
+void init_dsds_properties(void);

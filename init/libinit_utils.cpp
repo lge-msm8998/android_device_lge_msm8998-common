@@ -93,3 +93,11 @@ std::string parse_cmdline(std::string findstring)
     }
     return "";
 }
+
+void init_dsds_properties(void)
+{
+    if(parse_cmdline("lge.dsds") == "dsds")
+    {
+        property_override("persist.radio.multisim.config", "dsds");
+    }
+}
